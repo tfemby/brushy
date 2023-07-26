@@ -1,0 +1,14 @@
+HTTP/2 200 
+date: Tue, 25 Jul 2023 08:57:55 GMT
+content-type: application/octet-stream
+content-length: 30029701
+etag: "b224c643be5b3e77cc3d4173187d744f"
+accept-ranges: bytes
+last-modified: Sat, 01 Jul 2023 13:05:51 GMT
+content-disposition: attachment; filename="rakudo-star-2023.06-01.tar.gz"
+cf-cache-status: DYNAMIC
+report-to: {"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=d%2FoPOHdxGg1ypH0PIisNn94actp7smJs31gDs1WHg8WCuo1scTXEKGPG1gYCcNH3WZf1%2Bym%2BnXYQw7aHF7g9ab28MpVNWaHJh62X%2Bg0tLPOysvL6XJe0zPR0gEg%3D"}],"group":"cf-nel","max_age":604800}
+nel: {"success_fraction":0,"report_to":"cf-nel","max_age":604800}
+server: cloudflare
+cf-ray: 7ec332ba6f1a5a9c-MEL
+
