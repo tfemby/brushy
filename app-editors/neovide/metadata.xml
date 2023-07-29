@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer type="person">
+    <email>nosqrt@outlook.com</email>
+    <name>nosqrt</name>
+  </maintainer>
+  <use>
+    <flag name="lunarvim">Install an extra neovide .desktop file and start script
+      to run the lunarvim IDE layer with Neovide</flag>
+    <flag name="test">Run cargo build tests</flag>
+    <flag name="X">Enable X rendering</flag>
+    <flag name="Wayland">Enable Wayland rendering</flag>
+  </use>
+  <longdescription lang=en>
+    A no-nonsense Neovim Gui client written in rust. Where possible, there are some
+    graphical improvements, but functionally it should act like the terminal UI.
+  </longdescription>
+  <upstream>
+    <remote-id type="github">neovide/neovide</remote-id>
+    <bugs-to>https://github.com/neovide/neovide/issues/</bugs-to>
+    <doc>https://neovide.dev/</doc>
+  </upstream>
+</pkgmetadata>
