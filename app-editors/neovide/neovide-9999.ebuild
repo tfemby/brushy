@@ -22,12 +22,11 @@ LICENSE=""
 
 # Dependent crate licenses
 LICENSE+="
-		Apache-1.0 Apache-2.0 BSD Boost-1.0 CC0-1.0 ISC LGPL-3 MIT MPL-2.0
-		SSLeay Unicode-DFS-2016 
+	Apache-1.0 Apache-2.0 BSD Boost-1.0 CC0-1.0 ISC LGPL-3 MIT MPL-2.0
+	SSLeay Unicode-DFS-2016 
 "
 SLOT="0"
-IUSE="wayland +X"
-
+IUSE="wayland lunarvim +X test"
 REQUIRED_USE="|| ( wayland X )"
 
 DEPEND="
@@ -41,17 +40,17 @@ DEPEND="
 	media-libs/fontconfig:=
 	media-libs/freetype
 	media-libs/freeglut
-	media-sound/sndio
 	sys-libs/zlib
 "
 
 RDEPEND="
 	${DEPEND}
+	app-editors/neovim
 	media-libs/mesa[X?,wayland?]
 	wayland? ( dev-libs/wayland )
 	X? (
 		x11-libs/libX11
-		x11-lib/libxcb
+		x11-libs/libxcb
 		x11-libs/libXcursor
 		x11-libs/libXi
 		x11-libs/libXmu
@@ -59,12 +58,13 @@ RDEPEND="
 "
 
 BDEPEND="
-		${DEPEND}
-		dev-util/cmake
-		>=virtual/rust-1.57.0
-		sys-devel/clang
-		dev-utils/gn
-		dev-utils/ninja
+	${DEPEND}
+	dev-util/cmake
+	>=virtual/rust-1.57.0
+	sys-devel/clang
+	dev-util/gn
+	dev-util/ninja
+	virtual/pkgconfig
 "
 
 src_unpack() {
@@ -78,6 +78,10 @@ src_unpack() {
 		# Skia-bindings-0.52.0 causes issues in offline build mode. 0.62.0 works better.
 		# We're patching early here so the vendor pulls in the correct version.
 		eapply "${FILESDIR}/00_${PN}-skia-bindings-0.62.0.patch"
+		
+		# A few system lib don't like to get linked. We're adding code to the build.rs
+		# to ensure the CC command knows where these system libs are.
+		eapply "${FILESDIR}/01_${PN}-include-libs.patch"
 
 		cargo_live_src_unpack
 
@@ -100,27 +104,23 @@ src_unpack() {
 }
 
 src_configure() {
-		# A few system lib don't like to get linked. We're adding code to the build.rs
-		# to ensure the CC command knows where these system libs are.
-		eapply "${FILESDIR}/01_${PN}-include-libs.patch"
-
-		python_setup
-		cargo_src_configure
+	python_setup
+	cargo_src_configure
 }
 
 src_compile() {
-		# Skia-bindings + Skia-safe need these set to build. The depot_tools don't seem
-		# to work correctly in an ebuild environment.
-		# - To generate the bindings, we need to build skia... Yuck.
-		export CLANGCC=clang
-		export CLANGCXX=clang++
-		export SKIA_SOURCE_DIR="${CARGO_HOME}/gentoo/skia-bindings/skia"
-		export SKIA_USE_SYSTEM_LIBRARIES=true
-		export SKIA_NINJA_COMMAND=/usr/bin/ninja
-		export SKIA_GN_COMMAND=/usr/bin/gn
-		export BINDGEN_EXTRA_CLANG_ARGS=--target=x86_64-pc-linux-gnu
+	# Skia-bindings + Skia-safe need these set to build. The depot_tools don't seem
+	# to work correctly in an ebuild environment.
+	# - To generate the bindings, we need to build skia... Yuck.
+	export CLANGCC=clang
+	export CLANGCXX=clang++
+	export SKIA_SOURCE_DIR="${CARGO_HOME}/gentoo/skia-bindings/skia"
+	export SKIA_USE_SYSTEM_LIBRARIES=true
+	export SKIA_NINJA_COMMAND=/usr/bin/ninja
+	export SKIA_GN_COMMAND=/usr/bin/gn
+	export BINDGEN_EXTRA_CLANG_ARGS=--target=x86_64-pc-linux-gnu
 
-		cargo_src_compile --frozen --features embed-fonts
+	cargo_src_compile --frozen --features embed-fonts
 }
 
 src_install() {
@@ -134,6 +134,10 @@ src_install() {
 	done
 	doicon assets/${PN}.svg
 
+	if use lunarvim; then
+		domenu ${FILESDIR}/neovide-lunarvim.desktop
+		dobin ${FILESDIR}/neovide-lunarvim
+	fi
 }
 
 src_test() {
