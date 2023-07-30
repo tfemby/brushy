@@ -12,7 +12,7 @@
     <flag name="X">Enable X rendering</flag>
     <flag name="Wayland">Enable Wayland rendering</flag>
   </use>
-  <longdescription lang=en>
+  <longdescription lang="en">
     A no-nonsense Neovim Gui client written in rust. Where possible, there are some
     graphical improvements, but functionally it should act like the terminal UI.
   </longdescription>
