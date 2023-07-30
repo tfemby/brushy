@@ -1,5 +1,5 @@
 [Desktop Entry]
-Type=Applications
+Type=Application
 Exec=/bin/sh -c "/usr/bin/neovide-lunarvim %F"
 Icon=lvim
 Name=Neovide (LunarVim)
