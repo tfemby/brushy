@@ -1,8 +1,8 @@
 Upgrade from skia-bindings 0.52.0 -> 0.62.0. This provides better offline building.
 https://github.com/rust-skia/rust-skia/releases/tag/0.62.0
 
---- a/neovide/Cargo.toml
-+++ a/neovide/Cargo.toml
+--- a/neovide-9999/Cargo.toml
++++ a/neovide-9999/Cargo.toml
 @@ -56,6 +56,9 @@
  winit = { version = "=0.29.0-beta.0", features = ["serde"] }
  xdg = "2.4.1"
