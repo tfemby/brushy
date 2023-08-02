@@ -2,17 +2,14 @@ Ensures that neovide has the libraries it needs.
 https://www.reddit.com/r/rust/comments/nyjlhn/cxx_linking_errors_to_opengl_in_linux/
 
 --- a/neovide/build.rs
-+++ b/neovide/build.rs
-@@ -5,5 +5,13 @@ fn main() {
++++ a/neovide/build.rs
+@@ -5,4 +5,9 @@
          res.set_icon("assets/neovide.ico");
          res.compile().expect("Could not attach exe icon");
      }
-+    println!("cargo:rustc-link-arg-bins=/usr/lib64/libexpat.so.1");
-+    println!("cargo:rustc-link-arg-bins=/usr/lib64/libz.so.1");
-+    println!("cargo:rustc-link-arg-bins=/usr/lib64/libpng16.so.16");
-+    println!("cargo:rustc-link-arg-bins=/usr/lib64/libjpeg.so.62 ");
-+    println!("cargo:rustc-link-args-bin=/usr/lib64/libwebp.so.7.1.5");
-+    println!("cargo:rustc-link-arg-bins=/usr/lib64/libglut.so.3");
-+    println!("cargo:rustc-link-arg-bins=/usr/lib64/libfontconfig.so.1");
-+    println!("cargo:rustc-link-args-bin=/usr/lib64/libfreetype.so.6.19.0");
++    println!("cargo:rustc-link-arg=-lexpat");
++    println!("cargo:rustc-link-arg=-lz");
++    println!("cargo:rustc-link-arg=-lpng16");
++    println!("cargo:rustc-link-arg=-ljpeg");
++    println!("cargo:rustc-link-arg=-lwebp");
  }
