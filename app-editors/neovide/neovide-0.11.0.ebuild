@@ -358,8 +358,8 @@ if [[ ${PV} == "9999" ]]; then
 	SRC_URI="
 		https://codeload.github.com/rust-skia/skia/tar.gz/m113-0.61.8 -> skia.tar.gz
 		https://codeload.github.com/rust-skia/depot_tools/tar.gz/73a2624 -> depot_tools.tar.gz
-	"
 		#https://codeload.github.com/google/wuffs-mirror-release-c/tar.gz/e3f919c -> wuffs.tar.gz
+	"
 	inherit git-r3
 	EGIT_REPO_URI="https://github.com/neovide/neovide"
 else
