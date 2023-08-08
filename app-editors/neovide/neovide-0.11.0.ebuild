@@ -358,9 +358,8 @@ if [[ ${PV} == "9999" ]]; then
 	SRC_URI="
 		https://codeload.github.com/rust-skia/skia/tar.gz/m113-0.61.8 -> skia.tar.gz
 		https://codeload.github.com/rust-skia/depot_tools/tar.gz/73a2624 -> depot_tools.tar.gz
-		https://codeload.github.com/google/wuffs-mirror-release-c/tar.gz/e3f919c -> wuffs.tar.gz
 	"
-
+		#https://codeload.github.com/google/wuffs-mirror-release-c/tar.gz/e3f919c -> wuffs.tar.gz
 	inherit git-r3
 	EGIT_REPO_URI="https://github.com/neovide/neovide"
 else
@@ -376,10 +375,10 @@ fi
 
 LICENSE="
 	Apache-1.0 Apache-2.0 BSD Boost-1.0 CC0-1.0 ISC LGPL-3 MIT MPL-2.0
-	SSLeay Unicode-DFS-2016 
+	OFL-1.1 SSLeay Unicode-DFS-2016 
 "
 SLOT="0"
-IUSE="wayland lunarvim +X test"
+IUSE="lunarvim test wayland +X"
 
 REQUIRED_USE="|| ( wayland X )"
 
@@ -426,46 +425,38 @@ BDEPEND="
 	virtual/pkgconfig
 "
 
-# Cargo strips the final neovide binary. We don't need portage to tell us about it.
+# Cargo strips the final neovide binary (default functionality of a --release build).
 QA_PRESTRIPPED="usr/bin/neovide"
 
 src_unpack() {
 	if [[ "${PV}" == *9999* ]]; then
 		git-r3_src_unpack
-		#eapply "${FILESDIR}/00_${PN}-skia-bindings-0.62.0.patch"
 		cargo_live_src_unpack
-		unpack ${A}
+		my_bindings="${CARGO_HOME}/gentoo/skia-bindings"
 	else
 		cargo_src_unpack
-		unpack ${A}
-		#eapply "${FILESDIR}/00_${P}-skia-bindings-0.62.0.patch"
+		my_bindings="${CARGO_HOME}/gentoo/skia-bindings-0.62.0"
 	fi
 
-	my_skia="skia-m113-0.61.8"
-	my_depot="depot_tools-73a2624"
+	# This ensures skia and depot_tools match what's in the skia-bindings Cargo.toml. 
+	my_skia=$(sed -rn 's/^(skia) = "(.*)"/\1-\2/p' "${my_bindings}/Cargo.toml")
+	my_depot=$(sed -rn 's/^(depot_tools) = "(.*)"/\1-\2/p' "${my_bindings}/Cargo.toml")
+	# Wuffs sadly isn't in the Cargo.toml. For now, it's a hardcoded string.
+	my_externals="${my_bindings}/skia/third_party/externals"
 	my_wuffs="wuffs-mirror-release-c-e3f919c"
 
-	if [[ "${PV}" == *9999* ]]; then
-		my_lskia="${CARGO_HOME}/gentoo/skia-bindings/skia"
-		my_ldepot="${CARGO_HOME}/gentoo/skia-bindings/depot_tools"
-	else
-		my_lskia="${CARGO_HOME}/gentoo/skia-bindings-0.62.0/skia"
-		my_ldepot="${CARGO_HOME}/gentoo/skia-bindings-0.62.0/depot_tools"
-	fi
+	# Configures the skia-bindings directory with all the necessary tools to build
+	# skia + generate bindings.
+	mv "${WORKDIR}/${my_skia}" "${my_bindings}/skia" || die
+	mv "${WORKDIR}/${my_depot}" "${my_bindings}/depot_tools" || die
+	mkdir "${my_externals}" || die
+	mv "${WORKDIR}/${my_wuffs}" "${my_externals}/wuffs" || die
 
-	my_externals="${my_lskia}/third_party/externals"
-	mv "${WORKDIR}/${my_skia}" "${my_lskia}"
-	mv "${WORKDIR}/${my_depot}" "${my_ldepot}"
-	mkdir "${my_externals}"
-	mv "${WORKDIR}/${my_wuffs}" "${my_externals}/wuffs"
-
-	# The patches work for 9999 and versioned ebuilds. Change the build directory
-	# name so that the patches can apply to them.
+	# Change builddir so our lib patch works.
 	mv "${S}" "${WORKDIR}/${PN}"
 	S="${WORKDIR}/${PN}"
 
-	# A few system lib don't like to get linked. We're adding code to the build.rs
-	# to ensure the CC command knows where these system libs are.
+	# A few system lib don't get linked. We're adding ld args in build.rs.
 	eapply "${FILESDIR}/01_neovide-include-libs.patch"
 }
 
@@ -479,7 +470,7 @@ src_compile() {
 	# - To generate the bindings, we need to build skia... Yuck.
 	export CLANGCC=clang
 	export CLANGCXX=clang++
-	export SKIA_SOURCE_DIR="${my_lskia}"
+	export SKIA_SOURCE_DIR="${my_bindings}/skia"
 	export SKIA_USE_SYSTEM_LIBRARIES=true
 	export SKIA_NINJA_COMMAND=/usr/bin/ninja
 	export SKIA_GN_COMMAND=/usr/bin/gn
@@ -501,11 +492,11 @@ src_install() {
 	for i in 16x16 32x32 48x48 256x256; do
 		newicon -s "${i}" assets/"${PN}"-"${i}".png "${PN}".png
 	done
-	doicon assets/${PN}.svg
+	doicon assets/"${PN}".svg
 
 	if use lunarvim; then
-		domenu ${FILESDIR}/neovide-lunarvim.desktop
-		dobin ${FILESDIR}/neovide-lunarvim
+		domenu "${FILESDIR}"/neovide-lunarvim.desktop
+		dobin "${FILESDIR}"/neovide-lunarvim
 	fi
 }
 
@@ -518,6 +509,10 @@ pkg_postinst() {
 	xdg_mimeinfo_database_update
 	xdg_desktop_database_update
 	xdg_icon_cache_update
+
+	einfo "Neovide provides some functionality that may be enabled in your"
+	einfo "init.lua or init.vim. Visit the following for more info."
+	einfo "https://neovide.dev/configuration.html"
 }
 
 pkg_postrm() {
