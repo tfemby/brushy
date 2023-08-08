@@ -367,7 +367,7 @@ else
 		https://codeload.github.com/neovide/neovide/tar.gz/refs/tags/${PV} -> ${P}.tar.gz
 		https://codeload.github.com/rust-skia/skia/tar.gz/m113-0.61.8 -> skia.tar.gz
 		https://codeload.github.com/rust-skia/depot_tools/tar.gz/73a2624 -> depot_tools.tar.gz
-		https://codeload.github.com/google/wuffs-mirror-release-c/tar.gz/e3f919c -> wuffs.tar.gz
+		https://github.com/rust-skia/skia-binaries/releases/download/0.62.0/skia-binaries-8cf4841aefdb295709e9-x86_64-unknown-linux-gnu-egl-gl-svg-textlayout-wayland-x11.tar.gz -> skia-binaries-0.62.0.tar.gz
 		$(cargo_crate_uris)
 	"
 	KEYWORDS="~amd64"
@@ -441,16 +441,11 @@ src_unpack() {
 	# This ensures skia and depot_tools match what's in the skia-bindings Cargo.toml. 
 	my_skia=$(sed -rn 's/^(skia) = "(.*)"/\1-\2/p' "${my_bindings}/Cargo.toml")
 	my_depot=$(sed -rn 's/^(depot_tools) = "(.*)"/\1-\2/p' "${my_bindings}/Cargo.toml")
-	# Wuffs sadly isn't in the Cargo.toml. For now, it's a hardcoded string.
-	my_externals="${my_bindings}/skia/third_party/externals"
-	my_wuffs="wuffs-mirror-release-c-e3f919c"
 
 	# Configures the skia-bindings directory with all the necessary tools to build
 	# skia + generate bindings.
 	mv "${WORKDIR}/${my_skia}" "${my_bindings}/skia" || die
 	mv "${WORKDIR}/${my_depot}" "${my_bindings}/depot_tools" || die
-	mkdir "${my_externals}" || die
-	mv "${WORKDIR}/${my_wuffs}" "${my_externals}/wuffs" || die
 
 	# Change builddir so our lib patch works.
 	mv "${S}" "${WORKDIR}/${PN}"
@@ -468,13 +463,7 @@ src_compile() {
 	# Skia-bindings + Skia-safe need these set to build. The depot_tools don't seem
 	# to work correctly in an ebuild environment.
 	# - To generate the bindings, we need to build skia... Yuck.
-	export CLANGCC=clang
-	export CLANGCXX=clang++
-	export SKIA_SOURCE_DIR="${my_bindings}/skia"
-	export SKIA_USE_SYSTEM_LIBRARIES=true
-	export SKIA_NINJA_COMMAND=/usr/bin/ninja
-	export SKIA_GN_COMMAND=/usr/bin/gn
-	export BINDGEN_EXTRA_CLANG_ARGS=--target=x86_64-pc-linux-gnu
+	export SKIA_BINARIES_URL="file://${DISTDIR}/skia-binaries-0.62.0.tar.gz"
 
 	if [ "${PV}" == "*9999*" ]; then
 		cargo_src_compile --frozen --features embed-fonts

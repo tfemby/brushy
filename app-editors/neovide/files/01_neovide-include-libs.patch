@@ -3,7 +3,7 @@ https://www.reddit.com/r/rust/comments/nyjlhn/cxx_linking_errors_to_opengl_in_li
 
 --- a/neovide/build.rs
 +++ a/neovide/build.rs
-@@ -5,4 +5,9 @@
+@@ -5,4 +5,11 @@
          res.set_icon("assets/neovide.ico");
          res.compile().expect("Could not attach exe icon");
      }
@@ -12,4 +12,6 @@ https://www.reddit.com/r/rust/comments/nyjlhn/cxx_linking_errors_to_opengl_in_li
 +    println!("cargo:rustc-link-arg=-lpng16");
 +    println!("cargo:rustc-link-arg=-ljpeg");
 +    println!("cargo:rustc-link-arg=-lwebp");
++    println!("cargo:rustc-link-arg=-lGL");
++    println!("cargo:rustc-link-arg=-lEGL");
  }
