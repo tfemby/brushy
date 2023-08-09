@@ -25,6 +25,18 @@ jobs:
           repository: neovide/neovide
           submodules: true
           ref: ${{ env.latest_tag }}
+          
+      - name: Find skia binaries
+        run: |
+          echo "skia_tag=$(\
+          sed -rn "/^\[target\.'cfg\(linux\)'.*skia-safe\]/,+2s/^version = \"(.*)\"/\1/p" Cargo.toml)" \
+          >> $GITHUB_ENV
+
+      - uses: actions/checkout@v3
+        with:
+          repository: rust-skia/skia-binaries
+          submodule: true
+          ref: ${{ env.skia_tag }}
 
       - name: Create tarballs
         run: |
