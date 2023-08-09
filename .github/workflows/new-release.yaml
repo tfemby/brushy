@@ -14,37 +14,40 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      # Get the download link for neovide.
       - name: Fetch release version
         run: |
           echo "latest_tag=$(\
             curl -sL https://api.github.com/repos/neovide/neovide/releases/latest | \
             jq -r ".tag_name")" \
-            >> $GITHUB_ENV
-          
+            >> $GITHUB_ENV\
+
+      # Use the github checkout action to pull in the latest neovide tag.
       - uses: actions/checkout@v3
         with:
           repository: neovide/neovide
           submodules: true
           ref: ${{ env.latest_tag }}
-          
-      - name: Find skia binaries
+
+      # Find the version of skia-safe (and skia-bindings + skia-binaries) within Cargo.toml.
+      - name: Find skia version
         run: |
-          echo "I'm in 'Find skia binaries'"
-          ls
-          echo "Getting skia info"
           echo "skia_tag=$(\
             sed -rn "/^\[target\.'cfg\(linux\)'.*skia-safe\]/,+2s/^version = \"(.*)\"/\1/p" Cargo.toml)" \
             >> $GITHUB_ENV
+
+      # Make sure that the tag version of skia-binaries is available
+      - name: Find skia download link
+        run: |
           echo "skia_download=$(\
             curl -sL https://api.github.com/repos/rust-skia/skia-binaries/releases/tags/${{ env.skia_tag }} | \
             jq -r '.assets[] | .name | scan(".*linux-gnu-egl-gl-svg-textlayout-wayland-x11.tar.gz")')" \
             >> $GITHUB_ENV
 
-      - uses: actions/checkout@v3
-        with:
-          repository: rust-skia/skia-binaries
-          submodules: true
-          ref: ${{ env.skia_tag }}
+      # Use the previous two steps to download skia-binaries
+      - name: Download skia binaries
+        run: |
+          wget https://github.com/rust-skia/skia-binaries/releases/download/${{ env.skia_tag }}/${{ env.skia_download }}
 
       - name: Create tarballs
         run: |
