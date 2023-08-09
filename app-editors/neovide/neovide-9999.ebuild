@@ -356,17 +356,13 @@ HOMEPAGE="https://neovide.dev"
 
 if [[ ${PV} == "9999" ]]; then
 	SRC_URI="
-		https://codeload.github.com/rust-skia/skia/tar.gz/m113-0.61.8 -> skia.tar.gz
-		https://codeload.github.com/rust-skia/depot_tools/tar.gz/73a2624 -> depot_tools.tar.gz
-		#https://codeload.github.com/google/wuffs-mirror-release-c/tar.gz/e3f919c -> wuffs.tar.gz
+		https://github.com/rust-skia/skia-binaries/releases/download/0.62.0/skia-binaries-8cf4841aefdb295709e9-x86_64-unknown-linux-gnu-egl-gl-svg-textlayout-wayland-x11.tar.gz -> skia-binaries-0.62.0.tar.gz
 	"
 	inherit git-r3
 	EGIT_REPO_URI="https://github.com/neovide/neovide"
 else
 	SRC_URI="
 		https://codeload.github.com/neovide/neovide/tar.gz/refs/tags/${PV} -> ${P}.tar.gz
-		https://codeload.github.com/rust-skia/skia/tar.gz/m113-0.61.8 -> skia.tar.gz
-		https://codeload.github.com/rust-skia/depot_tools/tar.gz/73a2624 -> depot_tools.tar.gz
 		https://github.com/rust-skia/skia-binaries/releases/download/0.62.0/skia-binaries-8cf4841aefdb295709e9-x86_64-unknown-linux-gnu-egl-gl-svg-textlayout-wayland-x11.tar.gz -> skia-binaries-0.62.0.tar.gz
 		$(cargo_crate_uris)
 	"
@@ -418,11 +414,7 @@ RDEPEND="
 BDEPEND="
 	${COMMON_DEPEND}
 	dev-util/cmake
-	>=virtual/rust-1.57.0
-	sys-devel/clang
-	dev-util/gn
-	dev-util/ninja
-	virtual/pkgconfig
+	virtual/rust
 "
 
 # Cargo strips the final neovide binary (default functionality of a --release build).
@@ -432,20 +424,9 @@ src_unpack() {
 	if [[ "${PV}" == *9999* ]]; then
 		git-r3_src_unpack
 		cargo_live_src_unpack
-		my_bindings="${CARGO_HOME}/gentoo/skia-bindings"
 	else
 		cargo_src_unpack
-		my_bindings="${CARGO_HOME}/gentoo/skia-bindings-0.62.0"
 	fi
-
-	# This ensures skia and depot_tools match what's in the skia-bindings Cargo.toml. 
-	my_skia=$(sed -rn 's/^(skia) = "(.*)"/\1-\2/p' "${my_bindings}/Cargo.toml")
-	my_depot=$(sed -rn 's/^(depot_tools) = "(.*)"/\1-\2/p' "${my_bindings}/Cargo.toml")
-
-	# Configures the skia-bindings directory with all the necessary tools to build
-	# skia + generate bindings.
-	mv "${WORKDIR}/${my_skia}" "${my_bindings}/skia" || die
-	mv "${WORKDIR}/${my_depot}" "${my_bindings}/depot_tools" || die
 
 	# Change builddir so our lib patch works.
 	mv "${S}" "${WORKDIR}/${PN}"
@@ -460,9 +441,7 @@ src_configure() {
 }
 
 src_compile() {
-	# Skia-bindings + Skia-safe need these set to build. The depot_tools don't seem
-	# to work correctly in an ebuild environment.
-	# - To generate the bindings, we need to build skia... Yuck.
+	# The skia-bindings binary_cache feature requires us to point to the .tar.gz
 	export SKIA_BINARIES_URL="file://${DISTDIR}/skia-binaries-0.62.0.tar.gz"
 
 	if [ "${PV}" == "*9999*" ]; then
@@ -499,9 +478,11 @@ pkg_postinst() {
 	xdg_desktop_database_update
 	xdg_icon_cache_update
 
+	einfo ""
 	einfo "Neovide provides some functionality that may be enabled in your"
 	einfo "init.lua or init.vim. Visit the following for more info."
 	einfo "https://neovide.dev/configuration.html"
+	einfo ""
 }
 
 pkg_postrm() {
