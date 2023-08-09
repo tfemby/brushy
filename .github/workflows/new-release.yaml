@@ -50,15 +50,38 @@ jobs:
           curl -Lo skia-binaries-${{ env.skia_tag }}.tar.gz \
           https://github.com/rust-skia/skia-binaries/releases/download/${{ env.skia_tag }}/${{ env.skia_download }}
 
-      - name: Create tarballs
+      - name: Create neovide tarball
         run: |
           cd ..
           zip neovide-${{ env.latest_tag }}-complete.zip ${{ github.event.repository.name }} -r
           tar -czvf neovide-${{ env.latest_tag }}-complete.tar.gz ${{ github.event.repository.name }}
+
+      - name: Run cargo vendor
+        run: |
           cd ${{ github.event.repository.name }}
           cargo vendor
-          cd ..
+
+      - name: Get skia source and depot_tools
+        run: |
+          sed -rn "/^\[package\.metadata\]/,+2s/(skia|depot_tools) = \"(.*)\"/\1=\2/p" \
+          vendor/skia-bindings/Cargo.toml >> $GITHUB_ENV
+
+      - name: Fetch skia and depot_tools
+        run: |
+          cd ${{ github.event.repository.name }}/vendor/skia-bindings
+          curl -L https://codeload.github.com/rust-skia/skia/tar.gz/${{ env.skia }} | \
+          tar xz --transform 's!^[^/]*!skia!'
+          curl -L https://codeload.github.com/rust-skia/skia/tar.gz/${{ env.depot_tools }} | \
+          tar xz --transform 's!^[^/]*!depot_tools!'
+
+      - name: Create neovide tarball
+        run: |
+          cd ../..
           tar -czvf vendor.tar.gz ${{ github.event.repository.name }}/vendor
+
+      - name: Fetch skia
+        run: |
+          
 
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
