@@ -47,7 +47,8 @@ jobs:
       # Use the previous two steps to download skia-binaries
       - name: Download skia binaries
         run: |
-          wget https://github.com/rust-skia/skia-binaries/releases/download/${{ env.skia_tag }}/${{ env.skia_download }}
+          curl -Lo skia-binaries-${{ env.skia_tag }}.tar.gz \
+          https://github.com/rust-skia/skia-binaries/releases/download/${{ env.skia_tag }}/${{ env.skia_download }}
 
       - name: Create tarballs
         run: |
