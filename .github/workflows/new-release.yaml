@@ -1,0 +1,47 @@
+name: release
+
+# Controls when the workflow will run
+on:
+  push:
+    paths:
+      - 'release-version/*'
+  
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch release version
+        run: |
+          echo "latest_tag=$(\
+          curl -sL https://api.github.com/repos/neovide/neovide/releases/latest | \
+          jq -r ".tag_name")" >> $GITHUB_ENV
+          
+      - uses: actions/checkout@v3
+        with:
+          repository: neovide/neovide
+          submodules: true
+          ref: ${{ env.latest_tag }}
+
+      - name: Create tarballs
+        run: |
+          cd ..
+          zip neovide-${{ env.latest_tag }}-complete.zip ${{ github.event.repository.name }} -r
+          tar -czvf neovide-${{ env.latest_tag }}-complete.tar.gz ${{ github.event.repository.name }}
+          cd ${{ github.event.repository.name }}
+          cargo vendor
+          cd ..
+          tar -czvf vendor.tar.gz ${{ github.event.repository.name }}/vendor
+
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: ${{ env.latest_tag }}
+          prerelease: true
+          files: |
+            ../neovide-${{ env.latest_tag }}-complete.zip
+            ../neovide-${{ env.latest_tag }}-complete.tar.gz
+            ../vendor.tar.gz
