@@ -71,9 +71,11 @@ jobs:
         run: |
           cd vendor/skia-bindings
           echo "Downloading Skia"
-          curl -L https://codeload.github.com/rust-skia/skia/tar.gz/${{ env.skia }} | tar -xz --transform 's!^[^/]*!skia!'
+          curl -L https://codeload.github.com/rust-skia/skia/tar.gz/${{ env.skia }} | \
+          tar -xz --transform 's!^[^/]*!skia!'
           echo "Downloading depot_tools"
-          curl -L https://codeload.github.com/rust-skia/skia/tar.gz/${{ env.depot_tools }} | tar -xz --transform 's!^[^/]*!depot_tools!'
+          curl -L https://codeload.github.com/rust-skia/depot_tools/tar.gz/${{ env.depot_tools }} \
+          | tar -xz --transform 's!^[^/]*!depot_tools!'
 
       - name: Create neovide tarball
         run: |
