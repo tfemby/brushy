@@ -77,14 +77,10 @@ jobs:
           curl -L https://codeload.github.com/rust-skia/depot_tools/tar.gz/${{ env.depot_tools }} \
           | tar -xz --transform 's!^[^/]*!depot_tools!'
 
-      - name: Create neovide tarball
+      - name: Create vendor tarball
         run: |
-          cd ../..
+          cd ..
           tar -czvf vendor.tar.gz ${{ github.event.repository.name }}/vendor
-
-      - name: Fetch skia
-        run: |
-          
 
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
