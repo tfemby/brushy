@@ -364,14 +364,14 @@ else
 	SRC_URI="
 		https://codeload.github.com/neovide/neovide/tar.gz/refs/tags/${PV} -> ${P}.tar.gz
 		https://github.com/rust-skia/skia-binaries/releases/download/0.62.0/skia-binaries-8cf4841aefdb295709e9-x86_64-unknown-linux-gnu-egl-gl-svg-textlayout-wayland-x11.tar.gz -> skia-binaries-0.62.0.tar.gz
-		$(cargo_crate_uris)
+		${CARGO_CRATE_URIS}
 	"
 	KEYWORDS="~amd64"
 fi
 
 LICENSE="
 	Apache-1.0 Apache-2.0 BSD Boost-1.0 CC0-1.0 ISC LGPL-3 MIT MPL-2.0
-	OFL-1.1 SSLeay Unicode-DFS-2016 
+	OFL-1.1 SSLeay Unicode-DFS-2016
 "
 SLOT="0"
 IUSE="lunarvim test wayland +X"
