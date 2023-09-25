@@ -15,17 +15,11 @@ jobs:
         run: |
           curl -sL https://api.github.com/repos/neovide/neovide/releases/latest | \
           jq -r ".tag_name" > release-version/latest.txt
-      - name: Show contents
-        run: |
-          ls *
-      - name: Show git status
-        run: |
-          git status
       - name: Check for modified files
         id: git-check
         run: echo name=modified::$([ -z "`git status --porcelain`" ] && echo "false" || echo "true") >> $GITHUB_OUTPUT
       - name: Commit latest release version
-        if: steps.git-check.outputs.modified == 'true'
+        if: ${{ env.modified }} == 'true'
         run: |
           git config --global user.name 'nosqrt'
           git config --global user.email 'nosqrt@outlook.com'
