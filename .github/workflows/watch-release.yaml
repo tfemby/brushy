@@ -14,7 +14,9 @@ jobs:
       - name: Fetch release version
         run: |
           curl -sL https://api.github.com/repos/neovide/neovide/releases/latest | \
-          jq -r ".tag_name" > release-version/latest.txt \
+          jq -r ".tag_name" > release-version/latest.txt
+      - name: Show contents
+        run: |
           ls
       - name: Check for modified files
         id: git-check
