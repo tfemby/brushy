@@ -13,3 +13,7 @@ guarantee I'll add your changes for whatever reason.
 ### TODO
 - Work on using a vendor tarball correctly
   - Likely need to work out what `cargo.eclass` is doing which workflows aren't currently doing.
+  - Implement the neovide ebuild to pull our vendored sources
+  - Split `skia-bindings` and `skia` releases into their own seperate tarballs
+    - Makes the size of the vendor A LOT smaller
+    - Possibly pull `skia-binaries` in the same way
