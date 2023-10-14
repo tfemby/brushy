@@ -9,3 +9,7 @@ guarantee I'll add your changes for whatever reason.
 ### Packages worthy of emerge
 - app-editors/neovide
 - x11-misc/rofi-emoji
+
+### TODO
+- Work on using a vendor tarball correctly
+  - Likely need to work out what `cargo.eclass` is doing which workflows aren't currently doing.
