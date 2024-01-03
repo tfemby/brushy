@@ -7,6 +7,6 @@
   </maintainer>
   <upstream>
     <remote-id type="github">Mange/rofi-emoji</remote-id>
-	<bugs-to>https://github.com/Mange/rofi-emoji/issues</bugs-to>
+    <bugs-to>https://github.com/Mange/rofi-emoji/issues</bugs-to>
   </upstream>
 </pkgmetadata>

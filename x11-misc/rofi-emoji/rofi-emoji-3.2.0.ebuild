@@ -11,15 +11,14 @@ SRC_URI="https://codeload.github.com/Mange/${PN}/tar.gz/refs/tags/v${PV} -> ${P}
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64"
+IUSE="wayland"
 
 RDEPEND="
-	x11-misc/rofi
+	|| ( x11-misc/rofi gui-apps/rofi-wayland )
 "
 
 DEPEND="${RDEPEND}"
-
-BDEPEND=""
 
 src_prepare() {
 	default
@@ -27,5 +26,5 @@ src_prepare() {
 }
 
 src_configure() {
-	econf 
+	econf
 }
