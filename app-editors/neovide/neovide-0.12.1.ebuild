@@ -9,7 +9,7 @@ CRATES="
 	addr2line@0.21.0
 	adler@1.0.2
 	ahash@0.7.7
-	ahash@0.8.6
+	ahash@0.8.7
 	aho-corasick@1.1.2
 	android-activity@0.5.1
 	android-properties@0.2.2
@@ -18,12 +18,12 @@ CRATES="
 	anstyle-query@1.0.2
 	anstyle-wincon@3.0.2
 	anstyle@1.0.4
-	anyhow@1.0.76
+	anyhow@1.0.79
 	approx@0.5.1
 	arrayref@0.3.7
 	arrayvec@0.7.4
 	as-raw-xcb-connection@1.0.1
-	async-trait@0.1.75
+	async-trait@0.1.77
 	atomic-waker@1.1.2
 	autocfg@1.1.0
 	backtrace@0.3.69
@@ -47,9 +47,9 @@ CRATES="
 	cfg-if@1.0.0
 	cfg_aliases@0.1.1
 	cgl@0.3.2
-	clang-sys@1.6.1
-	clap@4.4.11
-	clap_builder@4.4.11
+	clang-sys@1.7.0
+	clap@4.4.13
+	clap_builder@4.4.12
 	clap_derive@4.4.7
 	clap_lex@0.6.0
 	clipboard-win@3.1.1
@@ -67,6 +67,7 @@ CRATES="
 	core-graphics@0.22.3
 	core-graphics@0.23.1
 	crc32fast@1.3.2
+	crossbeam-channel@0.5.10
 	crossbeam-utils@0.8.18
 	csscolorparser@0.6.2
 	cursor-icon@1.1.0
@@ -82,7 +83,7 @@ CRATES="
 	either@1.9.0
 	equivalent@1.0.1
 	errno@0.3.8
-	fdeflate@0.3.1
+	fdeflate@0.3.3
 	filetime@0.2.23
 	flate2@1.0.28
 	flexi_logger@0.22.6
@@ -94,16 +95,17 @@ CRATES="
 	foreign-types@0.5.0
 	form_urlencoded@1.2.1
 	fragile@2.0.0
-	futures-channel@0.3.29
-	futures-core@0.3.29
-	futures-executor@0.3.29
-	futures-io@0.3.29
-	futures-macro@0.3.29
-	futures-sink@0.3.29
-	futures-task@0.3.29
-	futures-util@0.3.29
+	fsevent-sys@4.1.0
+	futures-channel@0.3.30
+	futures-core@0.3.30
+	futures-executor@0.3.30
+	futures-io@0.3.30
+	futures-macro@0.3.30
+	futures-sink@0.3.30
+	futures-task@0.3.30
+	futures-util@0.3.30
 	futures@0.1.31
-	futures@0.3.29
+	futures@0.3.30
 	gethostname@0.2.3
 	gethostname@0.3.0
 	getrandom@0.1.16
@@ -126,6 +128,8 @@ CRATES="
 	idna@0.5.0
 	image@0.24.7
 	indexmap@2.1.0
+	inotify-sys@0.1.5
+	inotify@0.9.6
 	io-lifetimes@1.0.11
 	iovec@0.1.4
 	itertools@0.10.5
@@ -135,6 +139,8 @@ CRATES="
 	jobserver@0.1.27
 	js-sys@0.3.66
 	khronos_api@3.1.0
+	kqueue-sys@1.0.4
+	kqueue@1.0.8
 	lazy-bytes-cast@5.0.1
 	lazy_static@1.4.0
 	lazycell@1.3.0
@@ -148,7 +154,7 @@ CRATES="
 	log@0.4.20
 	lru@0.7.8
 	malloc_buf@0.0.6
-	memchr@2.6.4
+	memchr@2.7.1
 	memmap2@0.5.10
 	memmap2@0.9.3
 	memoffset@0.6.5
@@ -165,6 +171,7 @@ CRATES="
 	nix@0.26.4
 	nom@7.1.3
 	normalize-line-endings@0.3.0
+	notify@6.1.1
 	num-bigint@0.4.4
 	num-complex@0.4.4
 	num-integer@0.1.45
@@ -207,12 +214,12 @@ CRATES="
 	predicates-core@1.0.6
 	predicates-tree@1.0.9
 	predicates@2.1.5
-	prettyplease@0.2.15
+	prettyplease@0.2.16
 	proc-macro-crate@2.0.0
-	proc-macro2@1.0.71
+	proc-macro2@1.0.75
 	quick-xml@0.28.2
 	quick-xml@0.30.0
-	quote@1.0.33
+	quote@1.0.35
 	rand@0.7.3
 	rand@0.8.5
 	rand_chacha@0.2.2
@@ -244,9 +251,9 @@ CRATES="
 	scopeguard@1.2.0
 	sct@0.7.1
 	sctk-adwaita@0.7.0
-	serde@1.0.193
-	serde_derive@1.0.193
-	serde_json@1.0.108
+	serde@1.0.194
+	serde_derive@1.0.194
+	serde_json@1.0.111
 	serde_spanned@0.6.5
 	serial_test@2.0.0
 	serial_test_derive@2.0.0
@@ -272,11 +279,11 @@ CRATES="
 	strum_macros@0.25.3
 	swash@0.1.8
 	syn@1.0.109
-	syn@2.0.42
+	syn@2.0.48
 	tar@0.4.40
 	termtree@0.4.1
-	thiserror-impl@1.0.51
-	thiserror@1.0.51
+	thiserror-impl@1.0.56
+	thiserror@1.0.56
 	time-macros@0.2.4
 	time@0.3.9
 	tiny-skia-path@0.11.3
@@ -336,7 +343,7 @@ CRATES="
 	wayland-sys@0.30.1
 	wayland-sys@0.31.1
 	web-sys@0.3.66
-	web-time@0.2.3
+	web-time@0.2.4
 	webpki-roots@0.25.3
 	which@4.4.2
 	winapi-i686-pc-windows-gnu@0.4.0
@@ -372,7 +379,7 @@ CRATES="
 	windows_x86_64_msvc@0.48.5
 	windows_x86_64_msvc@0.52.0
 	winit@0.29.4
-	winnow@0.5.30
+	winnow@0.5.32
 	winres@0.1.12
 	x11-clipboard@0.7.1
 	x11-dl@2.21.0
@@ -380,7 +387,7 @@ CRATES="
 	x11rb-protocol@0.12.0
 	x11rb@0.10.1
 	x11rb@0.12.0
-	xattr@1.1.3
+	xattr@1.2.0
 	xcursor@0.3.5
 	xdg@2.5.2
 	xkbcommon-dl@0.4.1
