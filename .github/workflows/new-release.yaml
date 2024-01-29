@@ -80,7 +80,7 @@ jobs:
       - name: Create vendor tarball
         run: |
           cd ..
-          tar -czvf vendor.tar.gz ${{ github.event.repository.name }}/vendor
+          XZ_OPT='-T0 -9' tar -acf vendor.tar.xz ${{ github.event.repository.name }}/vendor
 
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
