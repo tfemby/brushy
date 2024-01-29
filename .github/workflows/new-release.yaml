@@ -23,7 +23,7 @@ jobs:
             >> $GITHUB_ENV\
 
       # Use the github checkout action to pull in the latest neovide tag.
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           repository: neovide/neovide
           submodules: true
@@ -90,4 +90,4 @@ jobs:
           files: |
             ../neovide-${{ env.latest_tag }}-complete.zip
             ../neovide-${{ env.latest_tag }}-complete.tar.gz
-            ../vendor.tar.gz
+            ../vendor.tar.xz
