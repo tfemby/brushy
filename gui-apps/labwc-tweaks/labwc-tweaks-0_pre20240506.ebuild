@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit cmake
+inherit cmake xdg-utils
 
 DESCRIPTION="A GUI 'Settings' application for labwc"
 HOMEPAGE="https://github.com/labwc/labwc-tweaks"
