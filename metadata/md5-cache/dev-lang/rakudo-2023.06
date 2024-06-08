@@ -12,5 +12,5 @@ REQUIRED_USE=|| ( java moar )
 RESTRICT=!test? ( test )
 SLOT=0
 SRC_URI=https://rakudo.org/dl/rakudo/rakudo-2023.06.tar.gz
-_eclasses_=java-utils-2	8c72ea36a4935f626b13a30141d0d39c	java-pkg-opt-2	4d26f2efd4c5ec82b66d1e8816f421b2
+_eclasses_=java-utils-2	b346c3901e71ba37137bae0b25b00221	java-pkg-opt-2	28044ae40e7846886b6f5eca24661629
 _md5_=d2016fd4e4fcf0d8748f113eb0a261e1
