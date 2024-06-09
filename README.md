@@ -5,6 +5,7 @@ If you have any issues with any ebuilds, feel free to open an issue.
 
 ### Packages worthy of emerge
 - app-editors/neovide
+- app-editors/thonny
 - dev-lang/micropython
 - gui-apps/labwc-tweaks
 - gui-apps/rofi-wayland
