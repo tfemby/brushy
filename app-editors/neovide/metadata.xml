@@ -3,7 +3,7 @@
 <pkgmetadata>
   <maintainer type="person">
     <email>nosqrt@outlook.com</email>
-    <name>nosqrt</name>
+    <name>Daniella Kicsak</name>
   </maintainer>
   <longdescription lang="en">
     A no-nonsense Neovim Gui client written in rust. Where possible, there are some
