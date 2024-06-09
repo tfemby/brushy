@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile install prepare test unpack
+DEPEND=dev-libs/libffi:= virtual/pkgconfig
+DESCRIPTION=Python implementation for microcontrollers
+EAPI=8
+HOMEPAGE=https://github.com/micropython/micropython
+INHERIT=toolchain-funcs
+IUSE=test
+KEYWORDS=~amd64 ~arm ~arm64 ~x86
+LICENSE=MIT
+RESTRICT=!test? ( test )
+SLOT=0
+SRC_URI=https://codeload.github.com/micropython/micropython/tar.gz/a61c446c0b34e82aeb54b9770250d267656f2b7f -> micropython-1.23.0.tar.gz https://codeload.github.com/micropython/berkeley-db-1.xx/tar.gz/85373b548f1fb0119a463582570b44189dfb09ae -> micropython-1.23.0-lib_berkeley-db-1.xx.tar.gz https://codeload.github.com/Mbed-TLS/mbedtls/tar.gz/edb8fec9882084344a314368ac7fd957a187519c -> micropython-1.23.0-lib_mbedtls.tar.gz https://codeload.github.com/micropython/micropython-lib/tar.gz/50ed36fbeb919753bcc26ce13a8cffd7691d06ef -> micropython-1.23.0-lib_micropython-lib.tar.gz
+_eclasses_=toolchain-funcs	e56c7649b804f051623c8bc1a1c44084	multilib	c19072c3cd7ac5cb21de013f7e9832e0
+_md5_=b9f7c6ee84a6e5808efa742f6b0eebd2
