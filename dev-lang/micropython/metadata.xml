@@ -5,10 +5,10 @@
         <email>nosqrt@outlook.com</email>
         <name>Daniella Kicsak</name>
     </maintainer>
-	<upstream>
-		<remote-id type="github">micropython/micropython</remote-id>
-	</upstream>
-	<longdescription lang="en">
+    <upstream>
+        <remote-id type="github">micropython/micropython</remote-id>
+    </upstream>
+    <longdescription lang="en">
 The MicroPython project aims to put an implementation of Python 3.x on
 microcontrollers and small embedded systems.
 MicroPython implements the entire Python 3.4 syntax (including exceptions,
@@ -22,5 +22,5 @@ implemented for the data types and modules.
 MicroPython can execute scripts in textual source form or from precompiled
 bytecode, in both cases either from an on-device filesystem or "frozen" into
 the MicroPython executable.
-	</longdescription>
+    </longdescription>
 </pkgmetadata>
