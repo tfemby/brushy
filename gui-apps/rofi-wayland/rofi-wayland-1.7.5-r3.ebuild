@@ -1,4 +1,4 @@
-# Copyright 1999-2022 Gentoo Authors
+# Copyright 1999-2024 Gentoo Authors & Daniella Kicsak
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -7,8 +7,8 @@ inherit meson xdg
 
 DESCRIPTION="A window switcher, run dialog and dmenu replacement"
 HOMEPAGE="https://github.com/lbonn/rofi"
-SRC_URI="https://github.com/lbonn/rofi/releases/download/${PV}%2Bwayland2/rofi-${PV}+wayland2.tar.xz"
-S="${WORKDIR}"/rofi-${PV}+wayland2
+SRC_URI="https://github.com/lbonn/rofi/releases/download/${PV}%2Bwayland${PR:1}/rofi-${PV}+wayland${PR:1}.tar.xz"
+S="${WORKDIR}"/rofi-${PV}+wayland${PR:1}
 
 LICENSE="MIT"
 SLOT="0"
