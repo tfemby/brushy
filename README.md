@@ -1,7 +1,7 @@
 # Brushy - Desktop ebuild repo
 This repo is primarily created to host ebuilds of packages I personally use.
 
-If you have any issues with an ebuilds, feel free to open an issue. 
+If you have any issues with any ebuilds, feel free to open an issue. 
 
 ### Packages worthy of emerge
 - app-editors/neovide
