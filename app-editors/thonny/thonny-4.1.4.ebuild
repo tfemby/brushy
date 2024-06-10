@@ -68,6 +68,15 @@ pkg_postinst() {
 	xdg_mimeinfo_database_update
 	xdg_desktop_database_update
 	xdg_icon_cache_update
+
+	einfo ""
+	einfo "If you want to experiment with micropython, you"
+	einfo "will likely want to install dev-lang/micropython"
+	einfo "from this overlay."
+	einfo ""
+	einfo "You can configure to use micropython from within"
+	einfo "thonny: tools -> interpreter -> MicroPython (local)"
+	einfo ""
 }
 
 pkg_postrm() {
