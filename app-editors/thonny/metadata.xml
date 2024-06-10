@@ -5,10 +5,25 @@
         <email>nosqrt@outlook.com</email>
         <name>Daniella Kicsak</name>
     </maintainer>
+    <use>
+        <flag name="crypt">Enable cryptography by installing dev-python/bcrypt and
+            dev-python/cryptography</flag>
+        <flag name="dbus">Use dbus to transfer firmware by installing
+            dev-python/dbus-next</flag>
+        <flag name="esptool">Enables communication with ESP devices</flag>
+        <flag name="ssh">Enable ssh communication using dev-python/paramiko</flag>
+    </use>
+    <longdescription lang="en">
+        Thonny is a simple Python IDE with features useful for learning programming.
+        It comes with a debugger which is able to visualize all the conceptual steps
+        taken to run a Python program (executing statements, evaluating expressions,
+        maintaining the call stack). There is a GUI for installing 3rd party packages
+        and special mode for learning about references.
+        See the homepage for more information, screenshots and a walk-through video.
+    </longdescription>
     <upstream>
         <remote-id type="github">thonny/thonny</remote-id>
+        <bugs-to>https://github.com/thonny/thonny/issues</bugs-to>
+        <doc>https://github.com/thonny/thonny/wiki</doc>
     </upstream>
-    <longdescription lang="en">
-        An easy to use python IDE for beginners.
-    </longdescription>
 </pkgmetadata>
