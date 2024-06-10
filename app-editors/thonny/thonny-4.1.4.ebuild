@@ -46,6 +46,7 @@ RDEPEND="
 		dev-python/matplotlib
 		dev-python/numpy
 		dev-python/scipy
+		dev-python/pandas
 	)
 	web? (
 		dev-python/flask

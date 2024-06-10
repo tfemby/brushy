@@ -13,7 +13,8 @@
         <flag name="esptool">Enables communication with ESP devices by installing
             dev-embedded/esptool</flag>
         <flag name="science">Installs some commonly used scientific libraries:
-            dev-python/matplotlib, dev-python/numpy and dev-python/scipy</flag>
+            dev-python/matplotlib, dev-python/numpy, dev-python/pandas and
+            dev-python/scipy</flag>
         <flag name="web">Installs web developement packages: dev-python/flask,
             dev/python/html5lib, dev-python/openpyxl and dev-python/requests</flag>
         <flag name="xlsx">Enable reading/writing to Excel spreadsheets ODF files
