@@ -17,28 +17,48 @@ SRC_URI="https://codeload.github.com/${PN}/${PN}/tar.gz/refs/tags/v${PV} -> ${P}
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~arm64 ~x86"
-IUSE="crypt dbus ssh esptool"
+IUSE="crypt dbus esptool science web xlsx"
 
 DEPEND="${PYTHON_DEPS}"
+# Base requirements are located in the root file "requirements.txt"
+# Extras are located at packaging/requirements-xxl-bundle.txt
 RDEPEND="
+	dev-python/asttokens
+	dev-python/colorama
+	dev-python/docutils
+	dev-python/isort
 	dev-python/jedi
+	dev-python/mccabe
+	dev-python/mypy
+	dev-python/ptyprocess
 	dev-python/pyserial
 	dev-python/pylint
-	dev-python/isort
-	dev-python/mccabe
-	dev-python/docutils
-	dev-python/mypy
-	dev-python/asttokens
 	dev-python/send2trash
 	dev-python/websockets
-	dev-python/ptyprocess
 	crypt? (
 		dev-python/bcrypt
 		dev-python/cryptography
+		dev-python/paramiko
 	)
 	dbus? ( dev-python/dbus-next )
 	esptool? ( dev-embedded/esptool )
-	ssh? ( dev-python/paramiko )
+	science? (
+		dev-python/matplotlib
+		dev-python/numpy
+		dev-python/scipy
+	)
+	web? (
+		dev-python/flask
+		dev-python/html5lib
+		dev-python/openpyxl
+		dev-python/requests
+	)
+	xlsx? (
+		dev-python/odfpy
+		dev-python/xlsxwriter
+		dev-python/xlrd
+		dev-python/xlwt
+	)
 "
 BDEPEND="
 	${RDEPEND}
@@ -71,11 +91,13 @@ pkg_postinst() {
 
 	einfo ""
 	einfo "If you want to experiment with micropython, you"
-	einfo "will likely want to install dev-lang/micropython"
-	einfo "from this overlay."
+	einfo "can install dev-lang/micropython"
 	einfo ""
 	einfo "You can configure to use micropython from within"
 	einfo "thonny: tools -> interpreter -> MicroPython (local)"
+	einfo ""
+	einfo "If you want to make games, you can install"
+	einfo "dev-python/pgzero"
 	einfo ""
 }
 
