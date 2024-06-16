@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+    <maintainer type="person">
+        <email>nosqrt@outlook.com</email>
+        <name>Daniella Kicsak</name>
+    </maintainer>
+    <longdescription lang="en">
+        colorzero is a color manipulation library for Python (yes, another
+        one) which aims to be reasonably simple to use and "pythonic" in
+        nature.
+
+        It does not aim to be as comprehensive, powerful, or that matter
+        as correct as, say, colormath. colorzero originally grew out of
+        work on my picamera project, hence it's intended to be sufficiently
+        simple that school children can use it without having to explain
+        color spaces and illuminants. However, it does aim to be useful to
+        a wide range of skills, hence it does include basic facilities for
+        CIE Lab representations, and Delta-E calculations should you need
+        them.
+    </longdescription>
+    <upstream>
+        <remote-id type="github">waveform80/colorzero</remote-id>
+        <bugs-to>https://github.com/waveform80/colorzero/issues</bugs-to>
+        <doc>https://colorzero.readthedocs.io/</doc>
+    </upstream>
+</pkgmetadata>
