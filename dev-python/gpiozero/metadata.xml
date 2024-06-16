@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+    <maintainer type="person">
+        <email>nosqrt@outlook.com</email>
+        <name>Daniella Kicsak</name>
+    </maintainer>
+    <longdescription lang="en">
+        A simple interface to GPIO devices with Raspberry Pi, developed
+        and maintained by Ben Nuttall and Dave Jones. The library includes
+        interfaces to many simple everyday components, as well as some more
+        complex things like sensors, analogue-to-digital converters, full
+        colour LEDs, robotics kits and more. 
+    </longdescription>
+    <upstream>
+        <remote-id type="github">gpiozero/gpiozero</remote-id>
+        <bugs-to>https://github.com/gpiozero/gpiozero/issues</bugs-to>
+        <doc>https://gpiozero.readthedocs.io/</doc>
+    </upstream>
+</pkgmetadata>
