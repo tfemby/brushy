@@ -18,6 +18,11 @@ KEYWORDS="~amd64 ~arm ~arm64"
 
 DEPEND="${PYTHON_DEPS}"
 BDEPEND="${DISTUTILS_DEPS}"
+RDEPEND="
+	${DEPEND}
+	${BDEPEND}
+	dev-python/colorzero
+"
 
 distutils_enable_tests pytest
 distutils_enable_sphinx docs
