@@ -375,10 +375,12 @@ inherit cargo desktop python-any-r1 xdg-utils
 DESCRIPTION="Neovide: A No Nonsense Neovim Gui"
 HOMEPAGE="https://neovide.dev"
 SKIA_VERSION="0.73.0"
+SKIA_COMMIT="532a0a24135b37b65b91"
 
 SRC_URI="
 	https://codeload.github.com/neovide/neovide/tar.gz/refs/tags/${PV} -> ${P}.tar.gz
-	https://github.com/rust-skia/skia-binaries/releases/download/${SKIA_VERSION}/skia-binaries-532a0a24135b37b65b91-x86_64-unknown-linux-gnu-egl-gl-svg-textlayout-wayland-x11.tar.gz -> skia-binaries-${SKIA_VERSION}.tar.gz
+	amd64? ( https://github.com/rust-skia/skia-binaries/releases/download/${SKIA_VERSION}/skia-binaries-${SKIA_COMMIT}-x86_64-unknown-linux-gnu-egl-gl-svg-textlayout-wayland-x11.tar.gz -> skia-binaries-${SKIA_VERSION}-amd64.tar.gz )
+	arm64? ( https://github.com/rust-skia/skia-binaries/releases/download/${SKIA_VERSION}/skia-binaries-${SKIA_COMMIT}-aarch64-unknown-linux-gnu-egl-gl-svg-textlayout-wayland-x11.tar.gz -> skia-binaries-${SKIA_VERSION}-arm64.tar.gz )
 	${CARGO_CRATE_URIS}
 "
 LICENSE="
@@ -386,7 +388,7 @@ LICENSE="
 	OFL-1.1 SSLeay Unicode-DFS-2016
 "
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="~amd64 ~arm64"
 
 COMMON_DEPEND="
 	app-arch/bzip2
@@ -438,7 +440,8 @@ src_configure() {
 
 src_compile() {
 	# The skia-bindings binary_cache feature requires us to point to the .tar.gz
-	export SKIA_BINARIES_URL="file://${DISTDIR}/skia-binaries-${SKIA_VERSION}.tar.gz"
+	use amd64 && export SKIA_BINARIES_URL="file://${DISTDIR}/skia-binaries-${SKIA_VERSION}-amd64.tar.gz"
+	use arm64 && export SKIA_BINARIES_URL="file://${DISTDIR}/skia-binaries-${SKIA_VERSION}-arm64.tar.gz"
 
 	cargo_src_compile --features embed-fonts
 }
@@ -464,6 +467,9 @@ pkg_postinst() {
 	einfo "Neovide provides some functionality that may be enabled in your"
 	einfo "init.lua or init.vim. Visit the following for more info."
 	einfo "https://neovide.dev/configuration.html"
+	einfo ""
+	einfo "If your device doesn't support opengl 3.3, try this workaround:"
+	einfo "https://github.com/neovide/neovide/issues/2068#issuecomment-1754110369"
 	einfo ""
 }
 
