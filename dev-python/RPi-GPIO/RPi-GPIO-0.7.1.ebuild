@@ -17,7 +17,7 @@ S=${WORKDIR}/${MY_PN}-${PV}
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="arm arm64"
+KEYWORDS="amd64 arm arm64"
 
 DOCS="README.txt"
 
