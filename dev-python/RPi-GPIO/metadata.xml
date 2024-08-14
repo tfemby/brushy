@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+    <maintainer type="person">
+        <email>nosqrt@outlook.com</email>
+        <name>Daniella Kicsak</name>
+    </maintainer>
+    <upstream>
+        <remote-id type="sourceforge">raspberry-gpio-python</remote-id>
+        <maintainer status="unknown">
+            <email>ben@croston.org</email>
+            <name>Ben Croston</name>
+        </maintainer>
+    </upstream>
+</pkgmetadata>

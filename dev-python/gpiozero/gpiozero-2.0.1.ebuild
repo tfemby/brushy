@@ -22,6 +22,7 @@ RDEPEND="
 	${DEPEND}
 	${BDEPEND}
 	dev-python/colorzero
+	dev-python/RPi-GPIO
 "
 
 distutils_enable_tests pytest
