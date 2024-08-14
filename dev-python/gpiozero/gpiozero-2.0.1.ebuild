@@ -21,8 +21,8 @@ BDEPEND="${DISTUTILS_DEPS}"
 RDEPEND="
 	${DEPEND}
 	${BDEPEND}
-	dev-python/colorzero
-	dev-python/RPi-GPIO
+	dev-python/colorzero[${PYTHON_USEDEP}]
+	dev-python/RPi-GPIO[${PYTHON_USEDEP}]
 "
 
 distutils_enable_tests pytest
