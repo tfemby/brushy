@@ -5,7 +5,19 @@
         <email>nosqrt@outlook.com</email>
         <name>Daniella Kicsak</name>
     </maintainer>
+    <longdescription lang="en">
+        This package provides a Python module to control the GPIO on a
+        Raspberry Pi.
+
+        Note that this module is unsuitable for real-time or timing
+        critical applications.  This is because you can not predict when
+        Python will be busy garbage collecting.  It also runs under the
+        Linux kernel which is not suitable for real time applications
+        - it is multitasking O/S and another process may be given
+        priority over the CPU, causing jitter in your program.
+    </longdescription>
     <upstream>
+        <remote-id type="pypi">RPi.GPIO</remote-id> 
         <remote-id type="sourceforge">raspberry-gpio-python</remote-id>
         <maintainer status="unknown">
             <email>ben@croston.org</email>
