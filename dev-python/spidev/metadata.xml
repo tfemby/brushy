@@ -9,5 +9,9 @@
         <remote-id type="pypi">spidev</remote-id> 
         <remote-id type="github">doceme/py-spidev</remote-id>
         <bugs-to>https://github.com/doceme/py-spidev/issues</bugs-to>
+        <maintainer>
+            <email>unconnected@gmx.de</email>
+            <name>Volker Thoms</name>
+        </maintainer>
     </upstream>
 </pkgmetadata>
