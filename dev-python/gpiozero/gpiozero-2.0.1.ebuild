@@ -15,6 +15,7 @@ SRC_URI="https://codeload.github.com/${PN}/${PN}/tar.gz/refs/tags/v${PV} -> ${P}
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64 ~arm ~arm64"
+IUSE="spi"
 
 DEPEND="${PYTHON_DEPS}"
 BDEPEND="${DISTUTILS_DEPS}"
@@ -23,6 +24,9 @@ RDEPEND="
 	${BDEPEND}
 	dev-python/colorzero[${PYTHON_USEDEP}]
 	dev-python/RPi-GPIO[${PYTHON_USEDEP}]
+	spi? (
+		dev-python/spidev
+	)
 "
 
 distutils_enable_tests pytest

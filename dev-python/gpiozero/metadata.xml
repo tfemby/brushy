@@ -5,6 +5,9 @@
         <email>nosqrt@outlook.com</email>
         <name>Daniella Kicsak</name>
     </maintainer>
+    <use>
+        <flag name="spi">Use dev-python/spidev instead of the bitbanged included protocol</flag>
+    </use>
     <longdescription lang="en">
         A simple interface to GPIO devices with Raspberry Pi, developed
         and maintained by Ben Nuttall and Dave Jones. The library includes
