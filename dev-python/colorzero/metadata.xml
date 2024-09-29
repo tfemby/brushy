@@ -21,6 +21,7 @@
     </longdescription>
     <upstream>
         <remote-id type="github">waveform80/colorzero</remote-id>
+        <remote-id type="pypi">colorzero</remote-id>
         <bugs-to>https://github.com/waveform80/colorzero/issues</bugs-to>
         <doc>https://colorzero.readthedocs.io/</doc>
     </upstream>
