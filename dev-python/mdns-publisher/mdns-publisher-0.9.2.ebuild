@@ -30,4 +30,15 @@ BDEPEND="
 	${DISTUTILS_DEPS}
 "
 
+python_install() {
+	distutils-r1_python_install
+}
+
+python_install_all() {
+	distutils-r1_python_install_all
+
+	newinitd "${FILESDIR}"/mdns-publish-cname.initd mdns-publish-cname
+	newconfd "${FILESDIR}"/mdns-publish-cname.confd mdns-publish-cname
+}
+
 distutils_enable_tests pytest

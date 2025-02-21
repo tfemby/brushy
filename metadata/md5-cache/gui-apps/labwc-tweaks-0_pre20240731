@@ -12,5 +12,5 @@ RDEPEND=dev-qt/qtbase:6 dev-libs/libxml2 dev-libs/glib:2
 RESTRICT=
 SLOT=0
 SRC_URI=https://github.com/labwc/labwc-tweaks/archive/1da2bc30dab39b3a4ad52a469a8e50351402e095.tar.gz -> labwc-tweaks-0_pre20240731.tar.gz
-_eclasses_=toolchain-funcs	e56c7649b804f051623c8bc1a1c44084	multilib	c19072c3cd7ac5cb21de013f7e9832e0	flag-o-matic	e503ea5acc20410237ba33ec3f7c857d	multiprocessing	30ead54fa2e2b5f9cd4e612ffc34d0fe	ninja-utils	2df4e452cea39a9ec8fb543ce059f8d6	xdg-utils	baea6080dd821f5562d715887954c9d3	cmake	258a4691fd43b8cd5814cb1acbb3c7df
+_eclasses_=toolchain-funcs	6afdb6107430c1832ca7e16aacbf8fa1	multilib	b2a329026f2e404e9e371097dda47f96	flag-o-matic	357f1a896fbedcd06e5ce55419c49eb9	multiprocessing	1e32df7deee68372153dca65f4a7c21f	ninja-utils	2df4e452cea39a9ec8fb543ce059f8d6	xdg-utils	42869b3c8d86a70ef3cf75165a395e09	cmake	10a50dfaf728b802fcfd37f8d0da9056
 _md5_=208ba82d27dbf460ceeb70bc23b2ecb8

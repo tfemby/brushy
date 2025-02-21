@@ -1,0 +1,4 @@
+# conf.d file for mdns-publisher
+
+# Place your subdomains below with a space separating them.
+MDNS_PUBLISH_SUBDOMAINS="subdomain1.home.local subdomain2.home.local"

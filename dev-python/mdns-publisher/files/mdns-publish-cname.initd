@@ -1,0 +1,41 @@
+#!/sbin/openrc-run
+command=/usr/bin/mdns-publish-cname
+pidfile="/var/run/mdns-publish-cname/mdns-publish-cname.pid"
+name="mdns-publish-cname daemon"
+
+description="Creates mdns cname's"
+
+depend() {
+    need dbus
+    need avahi-daemon
+    need net
+    use net
+}
+
+start_pre() {
+    checkpath --directory --owner nobody:nobody --mode 0775 \
+        /var/run/mdns-publish-cname
+}
+
+start() {
+    ebegin "Starting mdns-publish-cname"
+    start-stop-daemon --start \
+        --exec "${command}" \
+	    --make-pidfile \
+	    --pidfile "${pidfile}" \
+	    --background \
+	    --wait 5000 \
+	    -- \
+        "${MDNS_PUBLISH_SUBDOMAINS}"
+    eend $?
+}
+
+stop() {
+    ebegin "Stopping mdns-publish-cname"
+        start-stop-daemon --stop \
+        --exec "${command}" \
+	    --pidfile "${pidfile}" \
+	    -- \
+        "${command_args}"
+    eend $?
+}
