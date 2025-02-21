@@ -18,7 +18,7 @@ RESTRICT="!test? ( test )"
 
 RDEPEND="
 	!x11-misc/rofi
-	>=dev-libs/glib-2.40:2
+	>=dev-libs/glib-2.72:2
 	x11-libs/cairo[X]
 	x11-libs/gdk-pixbuf:2
 	x11-libs/pango[X]
@@ -31,13 +31,15 @@ DEPEND="
 "
 BDEPEND="
 	sys-devel/bison
+	>=sys-devel/flex-2.5.39
+	virtual/pkgconfig
 "
 
 src_configure() {
 	local emesonargs=(
 		-Dwayland=enabled
 		-Dxcb=enabled
-		-Dcheck=disabled
+		-Dimdkit=false
 		$(meson_use drun)
 		$(meson_use windowmode window)
 		$(meson_feature test check)
