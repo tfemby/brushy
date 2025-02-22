@@ -432,7 +432,6 @@ RDEPEND="
 BDEPEND="
 	${COMMON_DEPEND}
 	dev-build/cmake
-	virtual/rust
 "
 
 src_unpack() {
