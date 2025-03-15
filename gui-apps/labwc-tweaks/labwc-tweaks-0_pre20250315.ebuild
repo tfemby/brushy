@@ -12,7 +12,7 @@ if [[ ${PV} == 9999 ]]; then
 	inherit git-r3
 	EGIT_REPO_URI="https://github.com/labwc/labwc-tweaks.git"
 else
-	GIT_COMMIT="1da2bc30dab39b3a4ad52a469a8e50351402e095"
+	GIT_COMMIT="15dae5f20c53e30cd41d8ea1caec2414043065b1"
 	SRC_URI="https://github.com/labwc/labwc-tweaks/archive/${GIT_COMMIT}.tar.gz -> ${P}.tar.gz"
 
 	MY_PN="${PN/0/}"
