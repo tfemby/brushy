@@ -6,7 +6,7 @@ EAPI=8
 inherit autotools
 
 DESCRIPTION="An emoji selector plugin for Rofi"
-HOMEPAGE="https://github.comf/Mange/rofi-emoji"
+HOMEPAGE="https://github.com/Mange/rofi-emoji"
 SRC_URI="https://codeload.github.com/Mange/${PN}/tar.gz/refs/tags/v${PV} -> ${P}.tar.gz"
 
 LICENSE="MIT"
