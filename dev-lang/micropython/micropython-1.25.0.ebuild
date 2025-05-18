@@ -3,7 +3,9 @@
 
 EAPI=8
 
-inherit toolchain-funcs
+PYTHON_COMPAT=( python3_{10..14} )
+
+inherit toolchain-funcs python-any-r1
 
 DESCRIPTION="Python implementation for microcontrollers"
 HOMEPAGE="https://micropython.org https://github.com/micropython/micropython"
@@ -18,25 +20,22 @@ RESTRICT="!test? ( test )"
 DEPEND="
 	dev-libs/libffi:=
 	virtual/pkgconfig
+	${PYTHON_DEPS}
 "
-
-PATCHES=(
-	"${FILESDIR}/${P}-gcc13-build-fix.patch"
-)
 
 src_prepare() {
 	default
-	cd ports/unix || die
 
+	# Both ports/unix and mpy-cross need their Makefile changed.
 	# 1) don't die on compiler warning
 	# 2) remove /usr/local prefix references in favour of /usr
-	# 3) enforce our CFLAGS
-	# 4) enforce our LDFLAGS
+	# 3) enforce our CFLAGS (Only change the first `CFLAGS +=`)
+	# 4) enforce our LDFLAGS (Only change the first `LDFLAGS +=`)
 	sed -e 's#-Werror##g;' \
-		-e 's#\/usr\/local#\/usr#g;' \
-		-e "s#^CFLAGS = \(.*\)#CFLAGS = \1 ${CFLAGS}#g" \
-		-e "s#^LDFLAGS = \(.*\)#LDFLAGS = \1 ${LDFLAGS}#g" \
-		-i Makefile || die "can't patch Makefile"
+		-e "s#/usr/local#${EPREFIX}#g" \
+		-e "0,/^CFLAGS +=/{s#^CFLAGS += \(.*\)#CFLAGS += \1 ${CFLAGS}#g}" \
+		-e "0,/^LDFLAGS +=/{s#^LDFLAGS += \(.*\)#LDFLAGS += \1 ${LDFLAGS}#g}" \
+		-i ports/unix/Makefile mpy-cross/Makefile || die "can't patch Makefile"
 }
 
 src_compile() {
@@ -44,29 +43,26 @@ src_compile() {
 	einfo ""
 	einfo "Building the mpy-crosscompiler."
 	einfo ""
-	cd "${S}/mpy-cross" || die
-	emake CC="$(tc-getCC)"
+	emake V=1 -C mpy-cross CC="$(tc-getCC)"
 
 	# Finally, build the unix port.
 	einfo ""
 	einfo "Building the micropython unix port."
 	einfo ""
-	cd "${S}/ports/unix" || die
-	emake CC="$(tc-getCC)"
+	# Empty `STRIP=` leaves symbols + debug info intact. Let portage handle it.
+	# https://github.com/micropython/micropython/tree/master/ports/unix/README.md
+	emake V=1 -C ports/unix CC="$(tc-getCC)" STRIP=
 }
 
 src_test() {
-	cd ports/unix || die
-	emake CC="$(tc-getCC)" test
+	emake V=1 -C ports/unix CC="$(tc-getCC)" test
 }
 
 src_install() {
-	pushd ports/unix > /dev/null || die
-	emake CC="$(tc-getCC)" DESTDIR="${D}" install
-	popd > /dev/null || die
+	emake V=1 -C ports/unix CC="$(tc-getCC)" DESTDIR="${D}" install
 
 	# remove .git files
-	find tools -type f -name '.git*' -exec rm {} \; || die
+	find tools -type f -name '.git*' -delete || die
 
 	dodoc -r tools
 	einstalldocs

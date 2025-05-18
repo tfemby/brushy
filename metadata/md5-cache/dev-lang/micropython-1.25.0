@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile install prepare setup test
+DEPEND=dev-libs/libffi:= virtual/pkgconfig || ( dev-lang/python:3.14 dev-lang/python:3.13 dev-lang/python:3.12 dev-lang/python:3.11 )
+DESCRIPTION=Python implementation for microcontrollers
+EAPI=8
+HOMEPAGE=https://micropython.org https://github.com/micropython/micropython
+INHERIT=toolchain-funcs python-any-r1
+IUSE=test
+KEYWORDS=~amd64 ~arm ~arm64 ~x86
+LICENSE=MIT
+RESTRICT=!test? ( test )
+SLOT=0
+SRC_URI=https://micropython.org/resources/source/micropython-1.25.0.tar.xz
+_eclasses_=toolchain-funcs	f9d71a6efe9d083aec750dd13968e169	multiprocessing	1e32df7deee68372153dca65f4a7c21f	python-utils-r1	e6fe2c451b7e577e827165580e5bdd64	python-any-r1	891415dfe39ad9b41b461f2b86354af0
+_md5_=a784933ade71550502e8f2d5f1f60e13
