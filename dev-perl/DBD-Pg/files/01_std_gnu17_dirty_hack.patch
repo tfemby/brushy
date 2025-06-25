@@ -1,0 +1,11 @@
+--- a/Makefile.PL	2025-06-25 15:36:55.410497859 +1000
++++ b/Makefile.PL	2025-06-25 15:36:08.448676479 +1000
+@@ -186,7 +186,7 @@
+ if ($Config{ivsize} >= 8 && $serverversion >= 90300) {
+     $defines .= ' -DHAS64BITLO';
+ }
+-my $comp_opts = $Config{q{ccflags}} . $defines;
++my $comp_opts = $Config{q{ccflags}} . $defines . ' -std=gnu17';
+ 
+ if ($ENV{DBDPG_GCCDEBUG}) {
+     warn "Enabling many compiler options\n";
