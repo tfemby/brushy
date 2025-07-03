@@ -1,0 +1,16 @@
+BDEPEND=>=dev-perl/HTML-Parser-3.830.0 >=dev-perl/Text-Markdown-1.0.31-r2 >=dev-perl/Text-Unidecode-1.300.0-r1 virtual/perl-Digest-MD5 virtual/perl-Encode virtual/perl-ExtUtils-MakeMaker test? ( virtual/perl-File-Spec ) >=dev-lang/perl-5.38.2-r3[perl_features_debug=,perl_features_ithreads=,perl_features_quadmath=] test? ( >=virtual/perl-Test-Simple-1 )
+DEFINED_PHASES=compile configure install prepare test
+DEPEND=>=dev-lang/perl-5.38.2-r3[perl_features_debug=,perl_features_ithreads=,perl_features_quadmath=]
+DESCRIPTION=Convert MultiMarkdown syntax to (X)HTML
+EAPI=8
+HOMEPAGE=https://metacpan.org/release/Text-MultiMarkdown
+INHERIT=perl-module
+IUSE=perl_features_debug perl_features_ithreads perl_features_quadmath test
+KEYWORDS=~amd64 ~x86
+LICENSE=|| ( Artistic GPL-1+ )
+RDEPEND=>=dev-perl/HTML-Parser-3.830.0 >=dev-perl/Text-Markdown-1.0.31-r2 >=dev-perl/Text-Unidecode-1.300.0-r1 virtual/perl-Digest-MD5 virtual/perl-Encode >=dev-lang/perl-5.38.2-r3[perl_features_debug=,perl_features_ithreads=,perl_features_quadmath=] dev-lang/perl:=
+RESTRICT=!test? ( test )
+SLOT=0
+SRC_URI=mirror://cpan/authors/id/B/BR/BRIANDFOY/Text-MultiMarkdown-1.005.tar.gz
+_eclasses_=multiprocessing	1e32df7deee68372153dca65f4a7c21f	perl-functions	1863acf0982afafc67797e3ce7275b4c	readme.gentoo-r1	b045f3acf546393ab6b3170781875358	toolchain-funcs	f9d71a6efe9d083aec750dd13968e169	perl-module	41920449ca174fe9b9b303dfcbdb37a3
+_md5_=2ea5c2e7be653184574232925e1f616e
