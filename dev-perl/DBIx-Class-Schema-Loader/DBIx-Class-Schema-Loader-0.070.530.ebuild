@@ -18,10 +18,10 @@ RDEPEND="
 	>=dev-perl/Class-C3-Componentised-1.1.2
 	>=dev-perl/Class-Inspector-1.360.0
 	>=dev-perl/curry-2.000.001
-	>=dev-perl/DBIx-Class-0.80.0
+	>=dev-perl/DBIx-Class-0.82.844-r1
 	>=dev-perl/Class-Unload-0.110.0-r1
 	>=dev-perl/Data-Dump-1.250.0
-	>=dev-perl/Hash-Merge-0.302.0
+	>=dev-perl/Hash-Merge-0.302.0-r1
 	>=dev-perl/Lingua-EN-Inflect-Number-1.12
 	>=dev-perl/Lingua-EN-Inflect-Phrase-0.20
 	>=dev-perl/Lingua-EN-Tagger-0.31
@@ -45,7 +45,7 @@ BDEPEND="${RDEPEND}
 		>=dev-perl/DBD-SQLite-1.760.0
 		>=dev-perl/Test-Exception-0.430.0-r1
 		>=dev-perl/Test-Warn-0.370.0
-		>=dev-perl/Test-Deep-1.204.0
+		>=dev-perl/Test-Deep-1.205.0
 		>=dev-perl/Test-Differences-0.710.0
 		virtual/perl-File-Temp
 		virtual/perl-File-Path

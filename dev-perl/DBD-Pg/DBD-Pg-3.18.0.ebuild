@@ -13,7 +13,7 @@ KEYWORDS="~alpha amd64 arm arm64 ~hppa ~loong ~mips ppc ppc64 ~riscv ~s390 sparc
 
 RDEPEND="
 	virtual/perl-version
-	>=dev-perl/DBI-1.614.0
+	>=dev-perl/DBI-1.647.0
 	dev-db/postgresql:*
 "
 DEPEND="
@@ -21,10 +21,10 @@ DEPEND="
 "
 BDEPEND="
 	${RDEPEND}
-	>=virtual/perl-ExtUtils-MakeMaker-6.580.0
+	>=virtual/perl-ExtUtils-MakeMaker-7.700.0-r1
 	test? (
 		virtual/perl-File-Temp
-		>=virtual/perl-Test-Simple-0.880.0
+		>=virtual/perl-Test-Simple-1.302.199
 		virtual/perl-Time-HiRes
 	)
 "
