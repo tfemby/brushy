@@ -1,0 +1,16 @@
+BDEPEND=dev-lang/perl dev-qt/qttools:6 x11-libs/libxkbcommon app-alternatives/ninja >=dev-build/cmake-3.20.5
+DEFINED_PHASES=compile configure install postinst postrm prepare test
+DEPEND=dev-qt/qtbase:6 dev-libs/libxml2 dev-libs/glib:2
+DESCRIPTION=A GUI 'Settings' application for labwc
+EAPI=8
+HOMEPAGE=https://github.com/labwc/labwc-tweaks
+INHERIT=cmake xdg-utils
+IUSE=
+KEYWORDS=~amd64
+LICENSE=GPL-2 BSD
+RDEPEND=dev-qt/qtbase:6 dev-libs/libxml2 dev-libs/glib:2
+RESTRICT=
+SLOT=0
+SRC_URI=https://github.com/labwc/labwc-tweaks/archive/7d67ed21d5352ae4ef8637534eec303b710a27df.tar.gz -> labwc-tweaks-0_pre20250715.tar.gz
+_eclasses_=toolchain-funcs	a6df79c1e9bc84369dbf3d44206ac772	flag-o-matic	a7afe42e95fb46ce9691605acfb24672	multiprocessing	1e32df7deee68372153dca65f4a7c21f	ninja-utils	2df4e452cea39a9ec8fb543ce059f8d6	xdg-utils	42869b3c8d86a70ef3cf75165a395e09	cmake	460729dc36f68cf03b044bc1d367e34a
+_md5_=f2f72ef8d002c57093832d7fdd320ca0
