@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer type="person">
+    <email>nosqrt@outlook.com</email>
+    <name>Daniella Kicsak</name>
+  </maintainer>
+  <upstream>
+    <remote-id type="freedesktop-gitlab">vyivel/libsfdo</remote-id>
+  </upstream>
+</pkgmetadata>
