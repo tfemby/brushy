@@ -33,6 +33,7 @@ main Gentoo tree only has some of the useful modules for it.
 ### Python
 Most of these packages are primarily used on my Raspberry Pi's.
 - app-editors/thonny
+    - The editor I use for pretty easily flashing microcontrollers such as the Raspiberry Pi Pico
 - dev-lang/micropython
     - Used usually in conjuction with thonny. Allows me to dry-run
       code before flashing it onto a board.
